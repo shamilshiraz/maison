@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-black" style={{ fontFamily: 'neue' }}>
+    <footer className="bg-white border-t border-neutral-300 text-black" style={{ fontFamily: 'neue' }}>
       <div className="mx-auto max-w-[1600px] px-20 py-16">
         {/* Centered logo image */}
         <div className="flex justify-center">
