@@ -31,7 +31,7 @@ export default function FAQSection() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-[#F3F1EC] py-24 lg:py-32" style={{ fontFamily: 'neue' }}>
+    <section className="bg-[#fff] py-24 lg:py-32" style={{ fontFamily: 'neue' }}>
       <div className="mx-auto max-w-[760px] px-20">
         <h2
           className="text-center text-4xl text-black lg:text-5xl"
