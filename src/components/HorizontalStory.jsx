@@ -79,7 +79,7 @@ export default function HorizontalStory() {
           </div>
 
           {/* ---------------- Frame 2 (75vw) ---------------- */}
-          <div className="w-[75vw] h-full flex bg-[#0D1A08] text-white">
+          <div className="w-[75vw] h-full flex bg-[#20280F] text-white">
             <div className="w-[48%] flex items-center p-12">
               <div className="max-w-md">
                 <h2
