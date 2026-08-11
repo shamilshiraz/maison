@@ -45,7 +45,7 @@ export default function HorizontalStory() {
             <div className="w-1/2 flex flex-col justify-between p-12">
               <div className="max-w-md">
                 <h2
-                  className="text-4xl leading-[1.08] text-black"
+                  className="text-4xl leading-[1.08] text-black pt-20"
                   style={{ fontFamily: 'season' }}
                 >
                   The tailor GQ India called one of India's best-dressed men is now by appointment in Dubai
@@ -71,7 +71,7 @@ export default function HorizontalStory() {
 
             <div className="w-1/2 h-full">
               <img
-                src="/osm4.jpeg"
+                src="/osm3.jpeg"
                 alt="Maison Madras Dubai appointment"
                 className="w-full h-full object-cover"
               />
