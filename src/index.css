@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'season';
+  src: url('/src/assets/season.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'neue';
+  src: url('/src/assets/neue.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
