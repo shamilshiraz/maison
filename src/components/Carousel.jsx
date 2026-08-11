@@ -48,7 +48,7 @@ const items = [
   }
 ];
 
-const cardClass = { small: 'w-[300px]', medium: 'w-[400px]', large: 'w-[460px]', }; const imageHeight = { small: 'h-[360px]', medium: 'h-[420px]', large: 'h-[500px]', };
+const cardClass = { small: 'w-[280px]', medium: 'w-[340px]', large: 'w-[420px]', }; const imageHeight = { small: 'h-[360px]', medium: 'h-[420px]', large: 'h-[500px]', };
 
 export default function FeaturedCarousel() {
   const [index, setIndex] = useState(0);
@@ -101,7 +101,7 @@ export default function FeaturedCarousel() {
               </div>
 
               <div className="pt-3">
-                <p className="text-[10px] uppercase tracking-[0.14em] text-black/85">
+                <p className="text-[10px] uppercase text-black/85">
                   {item.name}
                 </p>
 

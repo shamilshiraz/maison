@@ -71,7 +71,7 @@ export default function HorizontalStory() {
 
             <div className="w-1/2 h-full">
               <img
-                src="/osm.jpeg"
+                src="/osm4.jpeg"
                 alt="Maison Madras Dubai appointment"
                 className="w-full h-full object-cover"
               />
