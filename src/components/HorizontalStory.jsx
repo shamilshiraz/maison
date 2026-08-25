@@ -139,16 +139,55 @@ export default function HorizontalStory() {
                     As featured in
                   </p>
 
-                  <div className="mt-6 flex flex-wrap gap-x-7 gap-y-4 text-black/40 text-base">
-                    <span>VOGUE</span>
-                    <span>GQ</span>
-                    <span>ELLE</span>
-                    <span>Robb Report</span>
-                    <span>Esquire</span>
-                    <span>MR PORTER</span>
-                    <span>The Hindu</span>
-                    <span>Architectural Digest</span>
-                  </div>
+<div className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-5">
+  <img
+    src="/vogue.svg"
+    alt="Vogue"
+    className="h-5 w-auto object-contain opacity-40"
+  />
+
+  <img
+    src="/gq.png"
+    alt="GQ"
+    className="h-5 w-auto object-contain opacity-40"
+  />
+
+  <img
+    src="/elle.svg"
+    alt="Elle"
+    className="h-5 w-auto object-contain opacity-40"
+  />
+
+  <img
+    src="/rr.png"
+    alt="Robb Report"
+    className="h-5 w-auto object-contain opacity-40"
+  />
+
+  <img
+    src="/esq.png"
+    alt="Esquire"
+    className="h-5 w-auto object-contain opacity-40"
+  />
+
+  <img
+    src="/mrp.jpg"
+    alt="MR PORTER"
+    className="h-5 w-auto object-contain opacity-40"
+  />
+
+  <img
+    src="/hindu.png"
+    alt="The Hindu"
+    className="h-5 w-auto object-contain opacity-40"
+  />
+
+  <img
+    src="/ad.png"
+    alt="Architectural Digest"
+    className="h-6 w-auto object-contain opacity-40"
+  />
+</div>
                 </div>
               </div>
             </div>
