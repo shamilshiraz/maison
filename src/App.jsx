@@ -18,6 +18,7 @@ import NewFt from './components/NewFooter'
 import WhatsAppButton from './components/Whatsapp'
 import MaisonMadras from './components/Maison'
 import { Routes,Route } from 'react-router-dom'
+import ParallaxGallery from './components/Llx'
 
 function App() {
   useEffect(() => {
@@ -56,6 +57,7 @@ function App() {
       <HorizontalStory />
       <FeaturedCarousel />
       <ConsultationSection />
+            <ParallaxGallery/>
       <ExperienceStore />
       <TestimonialSection />
       <FAQSection />

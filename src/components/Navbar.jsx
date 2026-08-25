@@ -1,54 +1,192 @@
 'use client';
 
-import { Search } from 'lucide-react';
+import { useState } from 'react';
+import { Search, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
-  return (
-    <header style={{fontFamily:'neue'}} className="fixed top-0 left-0 w-full z-50 bg-white backdrop-blur-md border-b border-black/5">
-      <nav className="relative h-20 flex items-center justify-between px-6 md:px-12 lg:px-16">
-        
-        {/* Left Links */}
-        <div className="flex items-center gap-6 md:gap-10 text-[11px] md:text-xs  uppercase text-black/80">
-          <Link to="/about" className="hover:text-black transition-colors">
-            About
-          </Link>
-          <a href="#trunk-shows" className="hover:text-black transition-colors hidden sm:block">
-            Trunk Shows
-          </a>
-          <a href="#atelier" className="hover:text-black transition-colors hidden md:block">
-            Atelier
-          </a>
-        </div>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-        {/* Center Logo Image */}
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <a href="/" className="block">
+  const closeMenu = () => setMenuOpen(false);
+
+  return (
+    <>
+      <header
+        style={{ fontFamily: 'neue' }}
+        className="fixed top-0 left-0 z-50 w-full border-b border-black/5 bg-white backdrop-blur-md"
+      >
+        <nav className="relative flex h-16 items-center justify-between px-5 sm:h-20 sm:px-6 md:px-12 lg:px-16">
+
+          {/* LEFT - DESKTOP */}
+
+          <div className="hidden items-center gap-6 text-[11px] uppercase text-black/80 sm:flex md:gap-10 md:text-xs">
+            <Link
+              to="/about"
+              className="transition-colors hover:text-black"
+            >
+              About
+            </Link>
+
+            <a
+              href="#trunk-shows"
+              className="transition-colors hover:text-black"
+            >
+              Trunk Shows
+            </a>
+
+            <a
+              href="#atelier"
+              className="transition-colors hover:text-black"
+            >
+              Atelier
+            </a>
+          </div>
+
+
+          {/* MOBILE MENU BUTTON */}
+
+          <button
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+            className="flex items-center justify-center p-1 sm:hidden"
+          >
+            <Menu className="h-5 w-5" strokeWidth={1.5} />
+          </button>
+
+
+          {/* CENTER LOGO */}
+
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <Link to="/" className="block">
+              <img
+                src="/mm.svg"
+                alt="Maison Madras"
+                className="h-5 w-auto object-contain sm:h-6"
+              />
+            </Link>
+          </div>
+
+
+          {/* RIGHT */}
+
+          <div className="flex items-center gap-2 text-[10px] uppercase text-black/80 sm:gap-4 sm:text-[11px] md:gap-6 md:text-xs">
+
+            <button
+              aria-label="Search"
+              className="p-2 transition-colors hover:text-black"
+            >
+              <Search className="h-4 w-4" strokeWidth={1.5} />
+            </button>
+
+            <a
+              href="#appointment"
+              className="hidden whitespace-nowrap rounded-full border border-black/20 px-4 py-2 transition-all duration-300 hover:border-black hover:bg-black hover:text-white sm:block md:px-5"
+            >
+              Book Appointment
+            </a>
+
+          </div>
+
+        </nav>
+      </header>
+
+
+      {/* MOBILE MENU */}
+
+      <div
+        className={`fixed inset-0 z-[60] bg-[#182B1C] text-[#F4F0E6] transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] sm:hidden ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+
+        {/* MOBILE MENU HEADER */}
+
+        <div className="flex h-16 items-center justify-between px-5">
+
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="block"
+          >
             <img
               src="/mm.svg"
               alt="Maison Madras"
-              className="h-6 md:h-6 w-auto object-contain"
+              className="h-5 w-auto brightness-0 invert"
             />
-          </a>
-        </div>
+          </Link>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-4 md:gap-6 text-[11px] md:text-xs uppercase text-black/80">
           <button
-            aria-label="Search"
-            className="p-2 hover:text-black transition-colors"
+            onClick={closeMenu}
+            aria-label="Close menu"
+            className="p-1"
           >
-            <Search className="h-4 w-4" />
+            <X
+              className="h-6 w-6"
+              strokeWidth={1.2}
+            />
           </button>
 
-          <a
-            href="#appointment"
-            className="border border-black/20 rounded-full px-4 md:px-5 py-2 hover:border-black hover:bg-black hover:text-white transition-all duration-300 whitespace-nowrap"
-          >
-            Book Appointment
-          </a>
         </div>
-      </nav>
-    </header>
+
+
+        {/* MOBILE LINKS */}
+
+        <div className="flex h-[calc(100vh-64px)] flex-col justify-between px-5 pb-8 pt-16">
+
+          <nav className="flex flex-col">
+
+            <Link
+              to="/about"
+              onClick={closeMenu}
+              className="border-b border-[#F4F0E6]/20 py-5 text-3xl"
+            >
+              About
+            </Link>
+
+            <a
+              href="#trunk-shows"
+              onClick={closeMenu}
+              className="border-b border-[#F4F0E6]/20 py-5 text-3xl"
+            >
+              Trunk Shows
+            </a>
+
+            <a
+              href="#atelier"
+              onClick={closeMenu}
+              className="border-b border-[#F4F0E6]/20 py-5 text-3xl"
+            >
+              Atelier
+            </a>
+
+            <a
+              href="#appointment"
+              onClick={closeMenu}
+              className="border-b border-[#F4F0E6]/20 py-5 text-3xl"
+            >
+              Appointment
+            </a>
+
+          </nav>
+
+
+          {/* MOBILE FOOTER */}
+
+          <div className="flex items-end justify-between text-[9px] uppercase tracking-[0.2em] text-[#F4F0E6]/50">
+
+            <span>
+              Maison Madras
+            </span>
+
+            <span>
+              Chennai · India
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+    </>
   );
 }

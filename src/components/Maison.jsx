@@ -44,7 +44,7 @@ export default function MaisonMadras() {
 
       <section
         ref={sectionRef}
-        className="relative overflow-hidden bg-[#F4F0E6]"
+        className="relative overflow-hidden bg-[#fff]"
       >
         <div className="flex flex-col items-center">
 
@@ -346,7 +346,7 @@ export default function MaisonMadras() {
 </section>
 
 
-<section className="bg-[#F4F0E6] text-[#182B1C] overflow-hidden">
+<section className="bg-[#fff] text-[#000] overflow-hidden">
   <div className="px-5 py-20 md:px-10 md:py-28 lg:px-16">
 
     {/* HEADER */}
