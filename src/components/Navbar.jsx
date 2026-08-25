@@ -33,6 +33,12 @@ export default function Navbar() {
             >
               Store
             </Link>
+                       <Link
+              to="/trunkshows"
+              className="transition-colors hover:text-black"
+            >
+              Trunk Shows
+            </Link>
 
 
           </div>

@@ -21,6 +21,7 @@ import { Routes,Route } from 'react-router-dom'
 import ParallaxGallery from './components/Llx'
 import StoreGallery from './components/StoreGl'
 import Atelier from './components/Atlpg'
+import TrunkShow from './components/TrunkShow'
 
 function App() {
   useEffect(() => {
@@ -67,7 +68,7 @@ function App() {
         <Route path="/about" element={<><MaisonMadras/></>} />
                 <Route path="/store" element={<><StoreGallery/>
                 <Atelier/></>} />
-
+<Route path="/trunkshows" element={<><TrunkShow/></>} />
       </Routes>
 
       <Footer /> 
