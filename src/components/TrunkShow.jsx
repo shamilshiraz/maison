@@ -11,6 +11,7 @@ const SHOWS = [
     date: 'October 25, 2026',
     location: 'Tokyo, Japan',
     venue: 'Tokyodrome',
+    status: 'Concluded',
   },
   {
     image:
@@ -19,6 +20,7 @@ const SHOWS = [
     date: 'November 08, 2026',
     location: 'London, England',
     venue: 'The Beaumont',
+    status: 'Upcoming',
   },
   {
     image:
@@ -27,6 +29,7 @@ const SHOWS = [
     date: 'November 21, 2026',
     location: 'Dubai, UAE',
     venue: 'The Lana',
+    status: 'Upcoming',
   },
   {
     image:
@@ -35,6 +38,7 @@ const SHOWS = [
     date: 'December 05, 2026',
     location: 'Mumbai, India',
     venue: 'The Taj Mahal Palace',
+    status: 'Concluded',
   },
 ];
 
@@ -42,22 +46,28 @@ export default function TrunkShow() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
 
+  // The image actually painted on the base layer. It only updates once
+  // an incoming wipe finishes, so the base never animates or exits —
+  // it just sits there while the next image wipes across on top of it.
+  const [displayedImage, setDisplayedImage] = useState(SHOWS[0].image);
+  const [incoming, setIncoming] = useState(null); // { index, direction } while a wipe is in flight
+
   const show = SHOWS[current];
 
-  const next = () => {
-    setDirection(1);
+  const goTo = (nextIndex, dir) => {
+    setDirection(dir);
+    setCurrent(nextIndex);
+    setIncoming({ index: nextIndex, direction: dir });
+  };
 
-    setCurrent((prev) =>
-      prev === SHOWS.length - 1 ? 0 : prev + 1
-    );
+  const next = () => {
+    const nextIndex = current === SHOWS.length - 1 ? 0 : current + 1;
+    goTo(nextIndex, 1);
   };
 
   const prev = () => {
-    setDirection(-1);
-
-    setCurrent((prev) =>
-      prev === 0 ? SHOWS.length - 1 : prev - 1
-    );
+    const prevIndex = current === 0 ? SHOWS.length - 1 : current - 1;
+    goTo(prevIndex, -1);
   };
 
   return (
@@ -117,89 +127,70 @@ export default function TrunkShow() {
             "
           >
 
-            <AnimatePresence
-              mode="sync"
-              initial={false}
-              custom={direction}
-            >
+            {/* BASE — the currently active image. It never animates and
+                never exits, it just sits underneath until the incoming
+                image finishes wiping over it, at which point it's swapped
+                to match (invisibly, since the wipe already shows it). */}
 
-              <motion.div
-                key={current}
-                custom={direction}
-                className="absolute inset-0"
-                initial={{
-                  clipPath:
-                    direction > 0
-                      ? 'inset(0 100% 0 0)'
-                      : 'inset(0 0 0 100%)',
-                }}
-                animate={{
-                  clipPath: 'inset(0 0% 0 0)',
-                }}
-                exit={{
-                  clipPath:
-                    direction > 0
-                      ? 'inset(0 0 0 100%)'
-                      : 'inset(0 100% 0 0)',
-                }}
-                transition={{
-                  duration: 0.9,
-                  ease: [0.76, 0, 0.24, 1],
-                }}
-              >
+            <img
+              src={displayedImage}
+              alt={show.name}
+              className="
+                absolute
+                inset-0
+                h-full
+                w-full
+                object-cover
+              "
+              draggable="false"
+            />
 
-                <img
-                  src={show.image}
-                  alt={show.name}
-                  className="
-                    absolute
-                    inset-0
-                    h-full
-                    w-full
-                    object-cover
-                  "
-                  draggable="false"
-                />
-
-              </motion.div>
-
-            </AnimatePresence>
-
-
-            {/* REVEAL CURTAIN */}
+            {/* INCOMING — the new image, masked in with a clip-path wipe
+                that grows over the base image until it fully covers it. */}
 
             <AnimatePresence
-              mode="sync"
               initial={false}
+              onExitComplete={() => {}}
             >
 
-              <motion.div
-                key={`curtain-${current}`}
-                className="
-                  pointer-events-none
-                  absolute
-                  inset-0
-                  z-10
-                  bg-[#182B1C]
-                "
-                initial={{
-                  scaleX: 1,
-                  transformOrigin:
-                    direction > 0
-                      ? 'left'
-                      : 'right',
-                }}
-                animate={{
-                  scaleX: 0,
-                }}
-                exit={{
-                  scaleX: 1,
-                }}
-                transition={{
-                  duration: 1,
-                  ease: [0.76, 0, 0.24, 1],
-                }}
-              />
+              {incoming && (
+                <motion.div
+                  key={incoming.index}
+                  className="absolute inset-0 z-10"
+                  initial={{
+                    clipPath:
+                      incoming.direction > 0
+                        ? 'inset(0 100% 0 0)'
+                        : 'inset(0 0 0 100%)',
+                  }}
+                  animate={{
+                    clipPath: 'inset(0 0% 0 0)',
+                  }}
+                  transition={{
+                    duration: 0.9,
+                    ease: [0.76, 0, 0.24, 1],
+                  }}
+                  onAnimationComplete={() => {
+                    setDisplayedImage(SHOWS[incoming.index].image);
+                    setIncoming(null);
+                  }}
+                >
+
+                  <img
+                    src={SHOWS[incoming.index].image}
+                    alt={SHOWS[incoming.index].name}
+                    className="
+                      absolute
+                      inset-0
+                      h-full
+                      w-full
+                      object-cover
+                    "
+                    draggable="false"
+                  />
+
+                </motion.div>
+              )}
 
             </AnimatePresence>
 
@@ -235,7 +226,8 @@ export default function TrunkShow() {
               className="
                 mt-5
                 text-center
-                text-[16px]
+                text-[14px]
+                transform-uppercase
                 leading-normal
                 text-black/80
               "
@@ -268,6 +260,23 @@ export default function TrunkShow() {
               <span>
                 Venue: {show.venue}
               </span>
+
+              <span className="mx-3 text-black/30">
+                
+              </span>
+
+ <span>
+  Status:{' '}
+  <span
+    className={
+      show.status.toLowerCase() === 'concluded'
+        ? 'text-red-600'
+        : 'text-black'
+    }
+  >
+    {show.status}
+  </span>
+</span>
 
             </motion.div>
 
