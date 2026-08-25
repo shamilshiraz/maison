@@ -37,7 +37,7 @@ export default function FAQSection() {
           className="text-center text-4xl text-black lg:text-5xl"
           style={{ fontFamily: 'season' }}
         >
-          Know more about bespoke clothing
+          Know more about us
         </h2>
 
         <div className="mt-16 divide-y divide-black/10">

@@ -72,15 +72,8 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2 text-[10px] uppercase text-black/80 sm:gap-4 sm:text-[11px] md:gap-6 md:text-xs">
 
-            <button
-              aria-label="Search"
-              className="p-2 transition-colors hover:text-black"
-            >
-              <Search className="h-4 w-4" strokeWidth={1.5} />
-            </button>
-
             <a
-              href="#appointment"
+              href="https://wa.me/919715531333?text=Hi"
               className="hidden whitespace-nowrap rounded-full border border-black/20 px-4 py-2 transition-all duration-300 hover:border-black hover:bg-black hover:text-white sm:block md:px-5"
             >
               Book Appointment

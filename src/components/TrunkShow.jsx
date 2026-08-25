@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 const SHOWS = [
   {
     image:
-      'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1800&q=85',
+      '/ae.jpg',
     name: 'Tokyo Trunk Show',
     date: 'October 25, 2026',
     location: 'Tokyo, Japan',
@@ -15,7 +15,7 @@ const SHOWS = [
   },
   {
     image:
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=85',
+      '/ae2.jpg',
     name: 'London Trunk Show',
     date: 'November 08, 2026',
     location: 'London, England',
@@ -24,7 +24,7 @@ const SHOWS = [
   },
   {
     image:
-      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1800&q=85',
+      '/ae3.png',
     name: 'Dubai Trunk Show',
     date: 'November 21, 2026',
     location: 'Dubai, UAE',
@@ -33,7 +33,7 @@ const SHOWS = [
   },
   {
     image:
-      'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=85',
+      '/ae4.jpg',
     name: 'Mumbai Trunk Show',
     date: 'December 05, 2026',
     location: 'Mumbai, India',

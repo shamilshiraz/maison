@@ -135,7 +135,7 @@ export default function MaisonMadras() {
             }}
           >
             <p className="text-[12px] leading-normal text-black/60 sm:text-[14px]">
-              Maison Madras is not a trunk show.
+              Maison Madras is not just a trunk show.
               It is an experience — intimate,
               intentional, and quietly extraordinary.
             </p>
