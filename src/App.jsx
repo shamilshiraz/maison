@@ -19,6 +19,8 @@ import WhatsAppButton from './components/Whatsapp'
 import MaisonMadras from './components/Maison'
 import { Routes,Route } from 'react-router-dom'
 import ParallaxGallery from './components/Llx'
+import StoreGallery from './components/StoreGl'
+import Atelier from './components/Atlpg'
 
 function App() {
   useEffect(() => {
@@ -63,6 +65,9 @@ function App() {
       <FAQSection />
         </>} />
         <Route path="/about" element={<><MaisonMadras/></>} />
+                <Route path="/store" element={<><StoreGallery/>
+                <Atelier/></>} />
+
       </Routes>
 
       <Footer /> 

@@ -27,19 +27,14 @@ export default function Navbar() {
               About
             </Link>
 
-            <a
-              href="#trunk-shows"
+            <Link
+              to="/store"
               className="transition-colors hover:text-black"
             >
-              Trunk Shows
-            </a>
+              Store
+            </Link>
 
-            <a
-              href="#atelier"
-              className="transition-colors hover:text-black"
-            >
-              Atelier
-            </a>
+
           </div>
 
 
