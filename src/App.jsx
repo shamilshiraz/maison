@@ -11,6 +11,13 @@ import ExperienceStore from './components/Store'
 import TestimonialSection from './components/Test'
 import FAQSection from './components/FAQ'
 import Footer from './components/Footer'
+import AtelierStack from './components/Atel'
+import OsmanNavbar from './components/Osm'
+import ShopTheLook from './components/ShopTheLook'
+import NewFt from './components/NewFooter'
+import WhatsAppButton from './components/Whatsapp'
+import MaisonMadras from './components/Maison'
+import { Routes,Route } from 'react-router-dom'
 
 function App() {
   useEffect(() => {
@@ -37,15 +44,26 @@ function App() {
 
   return (
     <div>
-      <Navbar />
-      <Hero />
+      {/* <OsmanNavbar/>
+      <ShopTheLook/>
+      <NewFt/> */}
+      {/* <AtelierStack/> */}
+      <WhatsAppButton/>
+     <Navbar />
+      <Routes>
+        <Route path="/" element={<>
+              <Hero />
       <HorizontalStory />
       <FeaturedCarousel />
       <ConsultationSection />
       <ExperienceStore />
       <TestimonialSection />
       <FAQSection />
-      <Footer />
+        </>} />
+        <Route path="/about" element={<><MaisonMadras/></>} />
+      </Routes>
+
+      <Footer /> 
     </div>
   )
 }

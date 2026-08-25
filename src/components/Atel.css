@@ -1,0 +1,253 @@
+.atelier-stack {
+  position: relative;
+  width: 100%;
+}
+
+/* Every layer occupies the entire viewport */
+.stack-section {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+/* -------------------------------- */
+/* FULL SCREEN IMAGE SECTIONS       */
+/* -------------------------------- */
+
+.stack-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* -------------------------------- */
+/* TRANSPARENT SECTIONS              */
+/* -------------------------------- */
+
+.stack-transparent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* -------------------------------- */
+/* COMMON CARD                       */
+/* -------------------------------- */
+
+.stack-card {
+  position: relative;
+  width: min(66vw, 920px);
+  min-height: 58vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 70px 90px;
+
+  text-align: center;
+  pointer-events: auto;
+}
+
+/* -------------------------------- */
+/* FIRST CREAM CARD                  */
+/* -------------------------------- */
+
+.quote-card {
+  background: #f5edcf;
+
+  transform: rotate(-1.8deg);
+
+  color: #111;
+
+  gap: 70px;
+}
+
+.quote-card .quote {
+  max-width: 680px;
+
+  margin: 0;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+.quote-card .signature {
+  margin: 0;
+
+  font-family: "Cursive";
+  font-size: clamp(30px, 3vw, 48px);
+  font-style: italic;
+}
+
+/* -------------------------------- */
+/* BURGUNDY STORY CARD               */
+/* -------------------------------- */
+
+.story-card {
+  background: #a9001d;
+
+  color: #f7efd4;
+
+  transform: rotate(-5deg);
+
+  padding-left: 110px;
+  padding-right: 110px;
+}
+
+.story-card h2 {
+  margin: 0 0 4px;
+
+  font-family: "Noto Serif Display", serif;
+  font-size: clamp(30px, 3vw, 46px);
+  font-weight: 400;
+}
+
+.story-card span {
+  margin-bottom: 45px;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+}
+
+.story-card p {
+  max-width: 650px;
+
+  margin: 0 0 18px;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.4;
+}
+
+/* -------------------------------- */
+/* FINAL ATELIER CARD                */
+/* -------------------------------- */
+
+.atelier-card {
+  background: #f5edcf;
+
+  color: #111;
+
+  transform: rotate(0deg);
+
+  min-height: 72vh;
+
+  padding: 65px 100px;
+}
+
+.atelier-card h2 {
+  margin: 0 0 35px;
+
+  font-family: "Noto Serif Display", serif;
+  font-size: clamp(25px, 2.2vw, 36px);
+  font-weight: 400;
+}
+
+.atelier-card p {
+  max-width: 760px;
+
+  margin: 0 0 25px;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(14px, 1.05vw, 18px);
+  line-height: 1.4;
+}
+
+/* -------------------------------- */
+/* TABLET                            */
+/* -------------------------------- */
+
+@media (max-width: 900px) {
+  .stack-card {
+    width: 82vw;
+    min-height: 60vh;
+    padding: 50px;
+  }
+
+  .quote-card {
+    gap: 45px;
+  }
+
+  .story-card {
+    padding: 60px;
+  }
+
+  .atelier-card {
+    min-height: 70vh;
+    padding: 50px;
+  }
+}
+
+/* -------------------------------- */
+/* MOBILE                            */
+/* -------------------------------- */
+
+@media (max-width: 600px) {
+  .stack-section {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  .stack-card {
+    width: 88vw;
+    min-height: 62vh;
+    padding: 35px 25px;
+  }
+
+  .quote-card {
+    gap: 40px;
+    transform: rotate(-1deg);
+  }
+
+  .quote-card .quote {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .quote-card .signature {
+    font-size: 30px;
+  }
+
+  .story-card {
+    transform: rotate(-3deg);
+    padding: 45px 30px;
+  }
+
+  .story-card h2 {
+    font-size: 28px;
+  }
+
+  .story-card span {
+    margin-bottom: 30px;
+    font-size: 13px;
+  }
+
+  .story-card p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .atelier-card {
+    min-height: 70vh;
+    padding: 35px 25px;
+  }
+
+  .atelier-card h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .atelier-card p {
+    font-size: 12px;
+    line-height: 1.45;
+    margin-bottom: 18px;
+  }
+}

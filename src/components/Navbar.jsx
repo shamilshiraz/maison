@@ -1,6 +1,7 @@
 'use client';
 
 import { Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
@@ -9,9 +10,9 @@ export default function Navbar() {
         
         {/* Left Links */}
         <div className="flex items-center gap-6 md:gap-10 text-[11px] md:text-xs  uppercase text-black/80">
-          <a href="#shop" className="hover:text-black transition-colors">
-            Shop
-          </a>
+          <Link to="/about" className="hover:text-black transition-colors">
+            About
+          </Link>
           <a href="#trunk-shows" className="hover:text-black transition-colors hidden sm:block">
             Trunk Shows
           </a>
