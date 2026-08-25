@@ -89,7 +89,7 @@ export default function TrunkShow() {
             top-1/2
             z-30
             -translate-y-1/2
-            text-[16px]
+            text-[14px]
             uppercase
             tracking-[0.04em]
             text-black
@@ -228,6 +228,7 @@ export default function TrunkShow() {
                 text-center
                 text-[14px]
                 transform-uppercase
+                uppercase
                 leading-normal
                 text-black/80
               "
@@ -296,7 +297,7 @@ export default function TrunkShow() {
             top-1/2
             z-30
             -translate-y-1/2
-            text-[16px]
+            text-[14px]
             uppercase
             tracking-[0.04em]
             text-black
