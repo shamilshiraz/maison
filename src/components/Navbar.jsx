@@ -60,7 +60,7 @@ export default function Navbar() {
           <div className="absolute left-1/2 -translate-x-1/2">
             <Link to="/" className="block">
               <img
-                src="/mm.svg"
+                src="/oar.avif"
                 alt="Maison Madras"
                 className="h-5 w-auto object-contain sm:h-6"
               />
