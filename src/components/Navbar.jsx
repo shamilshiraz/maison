@@ -61,6 +61,8 @@ const FlipText = ({ children }) => {
 };
 
 const mobileLinks = [
+    { label: 'Home', to: '/' },
+
   { label: 'Story', to: '/about' },
   { label: 'The Atelier', to: '/store' },
   { label: 'Maison Madras', to: '/trunkshows' },
