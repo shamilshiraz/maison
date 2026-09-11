@@ -1,102 +1,113 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const items = [
   {
     name: 'Virat Kohli',
     desc: 'Featured in Vogue',
-    image:
-      '/kohli.jpeg',
-    size: 'small',
+    image: '/kohli.jpeg',
   },
   {
     name: 'Shahid Kapoor',
     desc: 'Owning the style',
-    image:
-      '/sk.jpeg',
-    size: 'large',
+    image: '/sk.jpeg',
   },
   {
     name: 'Abhishek Bachchan',
     desc: 'Classic evening tailoring',
-    image:
-      '/ab.jpeg',
-    size: 'medium',
+    image: '/ab.jpeg',
   },
   {
     name: 'Ranveer Singh',
     desc: 'Bold bespoke expression',
-    image:
-      '/rk.jpeg',
-    size: 'small',
+    image: '/rk.jpeg',
   },
   {
-    name: 'Ram charan',
+    name: 'Ram Charan',
     desc: 'Effortless modern tailoring',
-    image:
-      './rc2.jpeg',
-    size: 'large',
+    image: '/rc2.jpeg',
   },
   {
     name: 'Abhishek Bachchan',
     desc: 'Contemporary elegance',
-    image:
-      '/ab2.jpeg',
-    size: 'medium',
-  }
+    image: '/ab2.jpeg',
+  },
 ];
 
-const cardClass = { small: 'w-[280px]', medium: 'w-[340px]', large: 'w-[420px]', }; const imageHeight = { small: 'h-[360px]', medium: 'h-[420px]', large: 'h-[500px]', };
+const CARD_WIDTH = 300;
+const GAP = 16;
+const STEP = CARD_WIDTH + GAP;
+const STEP_INTERVAL = 3000;
 
 export default function FeaturedCarousel() {
+  const [paused, setPaused] = useState(false);
   const [index, setIndex] = useState(0);
+  const [jump, setJump] = useState(false);
+  const timerRef = useRef(null);
+
+  // three copies so we can step forward indefinitely and reset seamlessly
+  const loopItems = [...items, ...items, ...items];
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((prev) => (prev + 1) % items.length);
-    }, 3000);
+    if (paused) return undefined;
 
-    return () => clearInterval(id);
-  }, []);
+    timerRef.current = setInterval(() => {
+      setIndex((prev) => prev + 1);
+    }, STEP_INTERVAL);
 
-  // duplicate for seamless looping
-  const loopItems = [...items, ...items];
+    return () => clearInterval(timerRef.current);
+  }, [paused]);
+
+  // once we've stepped through the second copy, snap back to the equivalent
+  // position in the first copy with no transition so the loop feels infinite
+  useEffect(() => {
+    if (index >= items.length * 2) {
+      const timeout = setTimeout(() => {
+        setJump(true);
+        setIndex((prev) => prev - items.length);
+        requestAnimationFrame(() => setJump(false));
+      }, 800); // wait for the eased move to finish first
+
+      return () => clearTimeout(timeout);
+    }
+
+    return undefined;
+  }, [index]);
 
   return (
     <section
-      className="bg-[#fff] pt-[40vh] pb-24 overflow-hidden"
+      className="overflow-hidden bg-white pt-[20vh] sm:pt-[40vh] pb-24"
       style={{ fontFamily: 'neue' }}
     >
-      <div className="mx-auto max-w-[1720px] pl-7 lg:pl-16">
-        {/* <h2
-          className="text-5xl lg:text-6xl text-black mb-14"
-          style={{ fontFamily: 'season' }}
-        >
-          Featured
-        </h2> */}
-
+      <div className="mx-auto max-w-[1720px] pl-2 lg:pl-2">
         <motion.div
-          animate={{
-            x: `-${index * 296}px`,
+          className="flex w-max items-start gap-2 pr-4"
+          animate={{ x: -index * STEP }}
+          transition={
+            jump
+              ? { duration: 0 }
+              : { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+          }
+          onHoverStart={() => setPaused(true)}
+          onHoverEnd={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+          style={{
+            willChange: 'transform',
           }}
-          transition={{
-            duration: 1.15,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="flex items-start gap-4 will-change-transform pr-4"
         >
           {loopItems.map((item, i) => (
-            <div
+            <article
               key={`${item.name}-${i}`}
-              className={`group shrink-0 ${cardClass[item.size]}`}
+              className="group w-[320px] shrink-0"
             >
-              <div className="overflow-hidden bg-white">
+              <div className="h-[420px] w-full overflow-hidden bg-[#f3f1ec]">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className={`w-full object-cover grayscale-[20%] transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:grayscale-0 ${imageHeight[item.size]}`}
+                  className="h-full w-full object-cover grayscale-[20%] transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
                 />
               </div>
 
@@ -105,11 +116,11 @@ export default function FeaturedCarousel() {
                   {item.name}
                 </p>
 
-                <p className="mt-1 text-[13px] text-black/55 leading-relaxed max-w-[90%]">
+                <p className="mt-1 max-w-[90%] text-[13px] leading-relaxed text-black/55">
                   {item.desc}
                 </p>
               </div>
-            </div>
+            </article>
           ))}
         </motion.div>
       </div>
