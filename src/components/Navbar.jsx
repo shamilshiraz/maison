@@ -76,7 +76,7 @@ export default function Navbar() {
               <img
                 src="/oar.avif"
                 alt="Osman Abdul Razak"
-                className="h-5 w-auto object-contain sm:h-8"
+                className="h-8 w-auto object-contain sm:h-8"
               />
             </Link>
           </div>
@@ -142,7 +142,7 @@ export default function Navbar() {
             <img
               src="/oar.avif"
               alt="Osman Abdul Razak"
-              className="h-5 w-auto brightness-0"
+              className="h-8 w-auto brightness-0"
             />
           </Link>
 
