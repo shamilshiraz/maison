@@ -116,7 +116,7 @@ export default function Hero() {
       />
 
       {/* Dark-to-light overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/0" />
 
       {/* Content */}
       <div className="relative z-10 flex h-full items-end px-2 pb-12 md:px-12 md:pb-16 lg:px-16 lg:pb-20">
@@ -157,7 +157,6 @@ export default function Hero() {
           >
             <motion.a
               href="#atelier"
-              {...buttonMotion}
               className="hero-button group relative inline-flex items-center justify-center overflow-hidden whitespace-nowrap rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs uppercase text-white backdrop-blur-sm transition-colors duration-500 hover:border-white hover:bg-white hover:text-black md:px-5"
             >
               <FlipText>Explore the Atelier</FlipText>
@@ -165,7 +164,6 @@ export default function Hero() {
 
             <motion.a
               href="#fitting"
-              {...buttonMotion}
               className="hero-button group relative inline-flex items-center justify-center overflow-hidden whitespace-nowrap rounded-full border border-white/20 bg-black px-4 py-2 text-xs uppercase text-white/90 transition-colors duration-500 hover:border-white hover:bg-white hover:text-black md:px-5"
             >
               <FlipText>Book a Fitting</FlipText>

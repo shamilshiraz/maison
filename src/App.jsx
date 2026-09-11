@@ -22,6 +22,7 @@ import ParallaxGallery from './components/Llx'
 import StoreGallery from './components/StoreGl'
 import Atelier from './components/Atlpg'
 import TrunkShow from './components/TrunkShow'
+import VerticalStory from './components/VerticalStory'
 
 function App() {
   useEffect(() => {
@@ -57,6 +58,7 @@ function App() {
       <Routes>
         <Route path="/" element={<>
               <Hero />
+              <VerticalStory/>
       <HorizontalStory />
       <FeaturedCarousel />
       <ConsultationSection />
