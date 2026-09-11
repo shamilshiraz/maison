@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 
 // Expects /public/1.webp ... /public/12.webp
@@ -21,9 +23,12 @@ function Column({ images, colRef }) {
   );
 }
 
-function Row({ images, rowRef }) {
+function Row({ images, rowRef, direction }) {
   return (
-    <div ref={rowRef} className="row">
+    <div
+      ref={rowRef}
+      className={`row ${direction === 'rtl' ? 'rowRtl' : 'rowLtr'}`}
+    >
       {images.map((src, index) => (
         <div className="card" key={`${src}-${index}`}>
           <img src={src} alt="" loading="lazy" />
@@ -66,8 +71,14 @@ export default function ParallaxGallery() {
 
       if (isMobile) {
         ROW_SPEEDS.forEach((speed, index) => {
+          const direction = index === 0 ? 1 : -1;
+
           const target =
-            (progress - 0.5) * viewportHeight * speed * 2;
+            (progress - 0.5) *
+            viewportHeight *
+            speed *
+            2 *
+            direction;
 
           currentRows.current[index] +=
             (target - currentRows.current[index]) * 0.09;
@@ -121,14 +132,17 @@ export default function ParallaxGallery() {
     ...IMAGES.slice(index * 3, index * 3 + 3),
   ]);
 
-  // Repeat the images so the horizontal rows remain filled.
+  // Long repeated strips prevent blank spaces during horizontal movement.
   const mobileRowOne = [
+    ...IMAGES,
     ...IMAGES,
     ...IMAGES,
     ...IMAGES,
   ];
 
   const mobileRowTwo = [
+    ...IMAGES.slice(6),
+    ...IMAGES.slice(0, 6),
     ...IMAGES.slice(6),
     ...IMAGES.slice(0, 6),
     ...IMAGES.slice(6),
@@ -206,7 +220,7 @@ export default function ParallaxGallery() {
             flex-direction: column;
             justify-content: center;
             gap: 2vw;
-            padding: 0.5rem 2vw;
+            padding: 0.5rem 0;
           }
 
           .row {
@@ -224,18 +238,22 @@ export default function ParallaxGallery() {
             flex: none;
           }
 
-          .row:first-child {
-            margin-left: -42vw;
+          /*
+            Both rows are intentionally oversized on both sides.
+            This prevents the moving strip from exposing the background.
+          */
+          .rowLtr {
+            margin-left: -116vw;
           }
 
-          .row:last-child {
-            margin-left: -12vw;
+          .rowRtl {
+            margin-left: -200vw;
           }
         }
       `}</style>
 
-      {/* Desktop gallery */}
       <div ref={galleryRef} className="gallery">
+        {/* Desktop gallery */}
         <div className="galleryWrapper">
           {desktopColumns.map((images, index) => (
             <Column
@@ -252,6 +270,7 @@ export default function ParallaxGallery() {
         <div className="mobileWrapper">
           <Row
             images={mobileRowOne}
+            direction="ltr"
             rowRef={(element) => {
               rowRefs.current[0] = element;
             }}
@@ -259,6 +278,7 @@ export default function ParallaxGallery() {
 
           <Row
             images={mobileRowTwo}
+            direction="rtl"
             rowRef={(element) => {
               rowRefs.current[1] = element;
             }}
