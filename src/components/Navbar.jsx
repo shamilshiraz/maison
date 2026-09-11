@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const MOBILE_MENU_ID = 'mobile-navigation';
 
 const FlipLink = ({ to, children, className = '' }) => {
   const text = String(children);
@@ -12,7 +14,7 @@ const FlipLink = ({ to, children, className = '' }) => {
       <span className="flip-link-inner">
         {text.split('').map((char, index) => (
           <span
-            key={index}
+            key={`${char}-${index}`}
             className="flip-letter"
             style={{ '--i': index }}
           >
@@ -38,7 +40,7 @@ const FlipText = ({ children }) => {
     <span className="flip-link-inner">
       {text.split('').map((char, index) => (
         <span
-          key={index}
+          key={`${char}-${index}`}
           className="flip-letter"
           style={{ '--i': index }}
         >
@@ -56,13 +58,51 @@ const FlipText = ({ children }) => {
   );
 };
 
+const mobileLinks = [
+  { label: 'Story', to: '/about' },
+  { label: 'The Atelier', to: '/store' },
+  { label: 'Maison Madras', to: '/trunkshows' },
+  { label: 'Ready to wear', to: '/trunkshows' },
+];
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
 
+  // Close the mobile menu with the Escape key
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [menuOpen]);
+
+  // Prevent the page behind the menu from scrolling
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
   return (
     <>
+      {/* DESKTOP + MOBILE NAVBAR */}
+
       <header
         style={{ fontFamily: 'neue' }}
         className="fixed top-0 left-0 z-50 w-full border-b border-black/5 bg-white text-black backdrop-blur-md"
@@ -76,7 +116,7 @@ export default function Navbar() {
               <img
                 src="/oar.avif"
                 alt="Osman Abdul Razak"
-                className="h-8 w-auto object-contain sm:h-8"
+                className="h-8 w-auto object-contain"
               />
             </Link>
           </div>
@@ -92,7 +132,7 @@ export default function Navbar() {
           </div>
 
 
-          {/* RIGHT — DESKTOP APPOINTMENT / MOBILE MENU */}
+          {/* RIGHT — DESKTOP APPOINTMENT / MOBILE HAMBURGER */}
 
           <div className="flex items-center justify-end">
 
@@ -100,7 +140,7 @@ export default function Navbar() {
 
             <a
               href="https://wa.me/919715531333?text=Hi"
-              className="appointment-button hidden whitespace-nowrap rounded-full bg-black px-4 py-2 text-[10px] uppercase text-white transition-all duration-300 hover:bg-black/80 sm:block md:px-5 md:text-[11px]"
+              className="appointment-button hidden whitespace-nowrap rounded-full bg-black px-4 py-2 text-[10px] uppercase text-white transition-all duration-300 hover:bg-black/80 sm:inline-flex md:px-5 md:text-[11px]"
             >
               <FlipText>Book Appointment</FlipText>
             </a>
@@ -108,8 +148,11 @@ export default function Navbar() {
             {/* MOBILE ONLY — HAMBURGER */}
 
             <button
+              type="button"
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
+              aria-expanded={menuOpen}
+              aria-controls={MOBILE_MENU_ID}
               className="flex h-8 w-8 flex-col items-end justify-center gap-[5px] sm:hidden"
             >
               <span className="block h-[1px] w-5 bg-black" />
@@ -125,7 +168,9 @@ export default function Navbar() {
       {/* MOBILE MENU — SLIDES DOWN FROM TOP */}
 
       <div
-        className={`fixed inset-0 z-[60] bg-white text-black transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] sm:hidden ${
+        id={MOBILE_MENU_ID}
+        aria-hidden={!menuOpen}
+        className={`mobile-menu fixed inset-0 z-[60] bg-white text-black transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] sm:hidden ${
           menuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
@@ -142,11 +187,12 @@ export default function Navbar() {
             <img
               src="/oar.avif"
               alt="Osman Abdul Razak"
-              className="h-8 w-auto brightness-0"
+              className="h-8 w-auto object-contain"
             />
           </Link>
 
           <button
+            type="button"
             onClick={closeMenu}
             aria-label="Close menu"
             className="p-1"
@@ -162,82 +208,21 @@ export default function Navbar() {
 
         {/* MOBILE SITEMAP */}
 
-        <div className="flex h-[calc(100vh-64px)] flex-col justify-between px-5 pb-8 pt-16">
+        <div className="flex h-[calc(100vh-64px)] flex-col px-5 pb-8 pt-16">
 
           <nav className="flex flex-col">
-
-            <Link
-              to="/about"
-              onClick={closeMenu}
-              style={{ fontFamily: 'season' }}
-              className="border-b border-black/10 py-5 text-4xl"
-            >
-              Story
-            </Link>
-
-            <Link
-              to="/store"
-              onClick={closeMenu}
-              style={{ fontFamily: 'season' }}
-              className="border-b border-black/10 py-5 text-4xl"
-            >
-              The Atelier
-            </Link>
-
-            <Link
-              to="/trunkshows"
-              onClick={closeMenu}
-              style={{ fontFamily: 'season' }}
-              className="border-b border-black/10 py-5 text-4xl"
-            >
-              Maison Madras
-            </Link>
-
-            <Link
-              to="/trunkshows"
-              onClick={closeMenu}
-              style={{ fontFamily: 'season' }}
-              className="border-b border-black/10 py-5 text-4xl"
-            >
-              Ready to wear
-            </Link>
-
+            {mobileLinks.map(({ label, to }) => (
+              <Link
+                key={label}
+                to={to}
+                onClick={closeMenu}
+                style={{ fontFamily: 'season' }}
+                className="border-b border-black/10 py-5 text-4xl"
+              >
+                {label}
+              </Link>
+            ))}
           </nav>
-
-
-          {/* MOBILE FOOTER */}
-
-          <div className="flex items-center justify-between text-[9px] uppercase tracking-[0.2em] text-black/50">
-
-            <span>
-              Osman Abdul Razak
-            </span>
-
-            <div className="flex items-center gap-5">
-
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Instagram
-              </a>
-
-              <a
-                href="https://wa.me/919715531333?text=Hi"
-                target="_blank"
-                rel="noreferrer"
-              >
-                WhatsApp
-              </a>
-
-              <a href="mailto:hello@example.com">
-                Mail
-              </a>
-
-            </div>
-
-          </div>
 
         </div>
 
@@ -335,6 +320,14 @@ export default function Navbar() {
         .appointment-button:hover .flip-letter-back {
           opacity: 1;
           transform: rotateX(0deg);
+        }
+
+        /* Safety net: appointment must never appear on mobile */
+
+        @media (max-width: 639px) {
+          .appointment-button {
+            display: none !important;
+          }
         }
       `}</style>
     </>
