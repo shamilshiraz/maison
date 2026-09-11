@@ -22,6 +22,7 @@ const FlipLink = ({ to, children, className = '' }) => {
               <span className="flip-letter-front">
                 {char === ' ' ? '\u00A0' : char}
               </span>
+
               <span className="flip-letter-back">
                 {char === ' ' ? '\u00A0' : char}
               </span>
@@ -48,6 +49,7 @@ const FlipText = ({ children }) => {
             <span className="flip-letter-front">
               {char === ' ' ? '\u00A0' : char}
             </span>
+
             <span className="flip-letter-back">
               {char === ' ' ? '\u00A0' : char}
             </span>
@@ -68,7 +70,13 @@ const mobileLinks = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const toggleMenu = () => {
+    setMenuOpen((previousState) => !previousState);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   // Close the mobile menu with the Escape key
   useEffect(() => {
@@ -105,7 +113,7 @@ export default function Navbar() {
 
       <header
         style={{ fontFamily: 'neue' }}
-        className="fixed top-0 left-0 z-50 w-full border-b border-black/5 bg-white text-black backdrop-blur-md"
+        className="fixed left-0 top-0 z-50 w-full border-b border-black/5 bg-white text-black backdrop-blur-md"
       >
         <nav className="relative grid h-16 grid-cols-2 items-center px-5 sm:h-20 sm:grid-cols-3 sm:px-6 md:px-12 lg:px-16">
 
@@ -121,7 +129,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-
           {/* CENTER — DESKTOP MENU */}
 
           <div className="hidden items-center justify-center gap-6 text-[11px] uppercase text-black/80 sm:flex md:gap-10 md:text-xs">
@@ -130,7 +137,6 @@ export default function Navbar() {
             <FlipLink to="/trunkshows">Maison Madras</FlipLink>
             <FlipLink to="/trunkshows">Ready to wear</FlipLink>
           </div>
-
 
           {/* RIGHT — DESKTOP APPOINTMENT / MOBILE HAMBURGER */}
 
@@ -149,21 +155,28 @@ export default function Navbar() {
 
             <button
               type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-label="Open menu"
+              onClick={toggleMenu}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
               aria-controls={MOBILE_MENU_ID}
-              className="flex h-8 w-8 flex-col items-end justify-center gap-[5px] sm:hidden"
+              className="relative z-[70] flex h-8 w-8 flex-col items-end justify-center gap-[5px] sm:hidden"
             >
-              <span className="block h-[1px] w-5 bg-black" />
-              <span className="block h-[1px] w-3.5 bg-black" />
+              {menuOpen ? (
+                <X
+                  className="h-6 w-6"
+                  strokeWidth={1.2}
+                />
+              ) : (
+                <>
+                  <span className="block h-[1px] w-5 bg-black" />
+                  <span className="block h-[1px] w-3.5 bg-black" />
+                </>
+              )}
             </button>
 
           </div>
-
         </nav>
       </header>
-
 
       {/* MOBILE MENU — SLIDES DOWN FROM TOP */}
 
@@ -171,7 +184,9 @@ export default function Navbar() {
         id={MOBILE_MENU_ID}
         aria-hidden={!menuOpen}
         className={`mobile-menu fixed inset-0 z-[60] bg-white text-black transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] sm:hidden ${
-          menuOpen ? 'translate-y-0' : '-translate-y-full'
+          menuOpen
+            ? 'pointer-events-auto translate-y-0'
+            : 'pointer-events-none -translate-y-full'
         }`}
       >
 
@@ -205,7 +220,6 @@ export default function Navbar() {
 
         </div>
 
-
         {/* MOBILE SITEMAP */}
 
         <div className="flex h-[calc(100vh-64px)] flex-col px-5 pb-8 pt-16">
@@ -225,9 +239,7 @@ export default function Navbar() {
           </nav>
 
         </div>
-
       </div>
-
 
       {/* LETTER-BY-LETTER FLIP STYLES */}
 
