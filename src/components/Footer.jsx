@@ -12,7 +12,7 @@ export default function Footer() {
 
         <div className="flex justify-center">
           <img
-            src="/mm.svg"
+            src="/oar.avif"
             alt="Maison Madras"
             className="h-6 w-auto object-contain"
           />

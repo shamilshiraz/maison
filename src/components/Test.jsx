@@ -34,26 +34,41 @@ export default function TestimonialSection() {
   const active = testimonials[index];
 
   return (
-    <section className="bg-[#20280F] text-white" style={{ fontFamily: 'neue' }}>
-      <div className="mx-auto max-w-[1600px] px-20 py-20">
+    <section
+      className="bg-[#20280F] text-white"
+      style={{ fontFamily: 'neue' }}
+    >
+      <div className="mx-auto max-w-[1600px] px-5 py-14 sm:px-8 sm:py-16 md:px-12 md:py-20 lg:px-20 lg:py-24">
         <h2
-          className="text-3xl text-[#E8E1D2] lg:text-4xl"
+          className="text-2xl leading-tight text-[#E8E1D2] sm:text-3xl lg:text-4xl"
           style={{ fontFamily: 'season' }}
         >
           Words from our clients
         </h2>
 
-        <div className="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+        <div className="mt-10 grid grid-cols-1 items-center gap-10 sm:mt-12 sm:gap-12 lg:mt-14 lg:grid-cols-2 lg:gap-20">
           {/* Left image */}
-          <div className="relative h-[520px] w-full max-w-[420px] overflow-hidden">
+          <div className="relative mx-auto h-[420px] w-full max-w-[420px] overflow-hidden sm:h-[500px] lg:mx-0 lg:h-[520px]">
             <AnimatePresence mode="wait">
               <motion.img
                 key={active.image}
                 src={active.image}
                 alt={active.name}
-                initial={{ opacity: 0, scale: 1.03, filter: 'blur(6px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, scale: 0.985, filter: 'blur(6px)' }}
+                initial={{
+                  opacity: 0,
+                  scale: 1.03,
+                  filter: 'blur(6px)',
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  filter: 'blur(0px)',
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.985,
+                  filter: 'blur(6px)',
+                }}
                 transition={{
                   duration: 0.9,
                   ease: [0.22, 1, 0.36, 1],
@@ -64,34 +79,46 @@ export default function TestimonialSection() {
           </div>
 
           {/* Right quote */}
-          <div className="flex min-h-[520px] items-center justify-center lg:justify-start">
-            <div className="max-w-[520px] text-center lg:text-left">
+          <div className="flex min-h-0 items-center justify-center lg:min-h-[520px] lg:justify-start">
+            <div className="w-full max-w-[520px] text-center lg:text-left">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active.quote}
-                  initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -18, filter: 'blur(6px)' }}
+                  initial={{
+                    opacity: 0,
+                    y: 18,
+                    filter: 'blur(6px)',
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    filter: 'blur(0px)',
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -18,
+                    filter: 'blur(6px)',
+                  }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
                   <blockquote
-                    className="text-[1.25rem] leading-[1.75] text-[#E8E1D2] lg:text-[1.55rem]"
+                    className="text-[1.2rem] leading-[1.65] text-[#E8E1D2] sm:text-[1.35rem] sm:leading-[1.7] lg:text-[1.55rem] lg:leading-[1.75]"
                     style={{ fontFamily: 'season' }}
                   >
                     “{active.quote}”
                   </blockquote>
 
-                  <div className="mt-14">
-                    <div className="h-px w-14 bg-white/20 mx-auto lg:mx-0" />
+                  <div className="mt-10 sm:mt-12 lg:mt-14">
+                    <div className="mx-auto h-px w-12 bg-white/20 lg:mx-0 lg:w-14" />
 
-                    <p className="mt-6 text-sm font-medium text-[#E8E1D2]">
+                    <p className="mt-5 text-xs font-medium text-[#E8E1D2] sm:mt-6 sm:text-sm">
                       {active.name}
                     </p>
 
-                    <p className="mt-1 text-sm text-white/55">
+                    <p className="mt-1 text-xs text-white/55 sm:text-sm">
                       {active.role}
                     </p>
                   </div>

@@ -78,9 +78,12 @@ export default function FeaturedCarousel() {
 
   return (
     <section
-      className="overflow-hidden bg-white pt-[20vh] sm:pt-[40vh] pb-24"
+      className="overflow-hidden bg-white pt-[20vh] sm:pt-[30vh] pb-24"
       style={{ fontFamily: 'neue' }}
     >
+      <h2 style={{ fontFamily: 'season' }} className="text-center text-2xl pb-20 sm:pb-40  text-black/85">
+        As styled for:
+      </h2>
       <div className="mx-auto max-w-[1720px] pl-2 lg:pl-2">
         <motion.div
           className="flex w-max items-start gap-2 pr-4"

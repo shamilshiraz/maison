@@ -31,33 +31,43 @@ export default function FAQSection() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-[#fff] py-24 lg:py-32" style={{ fontFamily: 'neue' }}>
-      <div className="mx-auto max-w-[760px] px-20">
+    <section
+      className="bg-white py-16 sm:py-20 md:py-24 lg:py-32"
+      style={{ fontFamily: 'neue' }}
+    >
+      <div className="mx-auto w-full max-w-[760px] px-5 sm:px-8 md:px-10 lg:px-12">
         <h2
-          className="text-center text-4xl text-black lg:text-5xl"
+          className="text-center text-3xl leading-tight text-black sm:text-4xl lg:text-5xl"
           style={{ fontFamily: 'season' }}
         >
           Know more about us
         </h2>
 
-        <div className="mt-16 divide-y divide-black/10">
+        <div className="mt-10 divide-y divide-black/10 sm:mt-12 md:mt-16">
           {faqs.map((faq, index) => {
             const isOpen = open === index;
 
             return (
-              <div key={faq.question} className="py-5">
+              <div key={faq.question} className="py-5 sm:py-6">
                 <button
+                  type="button"
                   onClick={() => setOpen(isOpen ? -1 : index)}
-                  className="flex w-full items-center justify-between gap-6 text-left"
+                  className="flex w-full items-start justify-between gap-5 text-left"
+                  aria-expanded={isOpen}
                 >
-                  <span className="text-[15px] text-black/80">{faq.question}</span>
+                  <span className="max-w-[calc(100%-2rem)] text-[13px] leading-6 text-black/80 sm:text-[15px] sm:leading-7">
+                    {faq.question}
+                  </span>
 
                   <motion.span
                     animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.25, ease: 'easeOut' }}
-                    className="shrink-0 text-black/40"
+                    transition={{
+                      duration: 0.25,
+                      ease: 'easeOut',
+                    }}
+                    className="mt-1 shrink-0 text-black/40"
                   >
-                    <ChevronDown className="h-4 w-4" />
+                    <ChevronDown className="h-4 w-4 sm:h-5 sm:w-5" />
                   </motion.span>
                 </button>
 
@@ -73,7 +83,7 @@ export default function FAQSection() {
                       }}
                       className="overflow-hidden"
                     >
-                      <p className="pt-4 pr-8 text-[14px] leading-7 text-black/60">
+                      <p className="max-w-[680px] pt-4 pr-7 text-[13px] leading-6 text-black/60 sm:pr-10 sm:text-[14px] sm:leading-7">
                         {faq.answer}
                       </p>
                     </motion.div>
