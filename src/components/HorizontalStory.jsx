@@ -79,7 +79,7 @@ export default function HorizontalStory() {
           </div>
 
           {/* ---------------- Frame 2 (75vw) ---------------- */}
-          <div className="w-[75vw] h-full flex bg-[#20280F] text-white">
+          <div className="w-[75vw] h-full flex bg-white text-black">
             <div className="w-[48%] flex items-center p-12">
               <div className="max-w-md">
                 <h2
@@ -89,7 +89,7 @@ export default function HorizontalStory() {
                   A quiet revolution in Modern Menswear
                 </h2>
 
-                <div className="mt-6 space-y-4 text-white/75 leading-relaxed text-[14px]">
+                <div className="mt-6 space-y-4 text-black/75 leading-relaxed text-[14px]">
                   <p>
                     Founded in 2006, Osman's journey began with ready-to-wear and evolved
                     into a deeper commitment to bespoke tailoring.

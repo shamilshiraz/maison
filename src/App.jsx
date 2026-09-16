@@ -23,6 +23,7 @@ import StoreGallery from './components/StoreGl'
 import Atelier from './components/Atlpg'
 import TrunkShow from './components/TrunkShow'
 import VerticalStory from './components/VerticalStory'
+import ScrollToTop from './components/Scrolltotop'
 
 function App() {
   useEffect(() => {
@@ -55,6 +56,7 @@ function App() {
       {/* <AtelierStack/> */}
       <WhatsAppButton/>
      <Navbar />
+     <ScrollToTop/>
       <Routes>
         <Route path="/" element={<>
               <Hero />

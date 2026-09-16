@@ -35,12 +35,12 @@ export default function TestimonialSection() {
 
   return (
     <section
-      className="bg-[#20280F] text-white"
+      className="bg-white text-black"
       style={{ fontFamily: 'neue' }}
     >
       <div className="mx-auto max-w-[1600px] px-5 py-14 sm:px-8 sm:py-16 md:px-12 md:py-20 lg:px-20 lg:py-24">
         <h2
-          className="text-2xl leading-tight text-[#E8E1D2] sm:text-3xl lg:text-4xl"
+          className="text-2xl leading-tight text-black sm:text-3xl lg:text-4xl"
           style={{ fontFamily: 'season' }}
         >
           Words from our clients
@@ -105,20 +105,20 @@ export default function TestimonialSection() {
                   }}
                 >
                   <blockquote
-                    className="text-[1.2rem] leading-[1.65] text-[#E8E1D2] sm:text-[1.35rem] sm:leading-[1.7] lg:text-[1.55rem] lg:leading-[1.75]"
+                    className="text-[1.2rem] leading-[1.65] text-black sm:text-[1.35rem] sm:leading-[1.7] lg:text-[1.55rem] lg:leading-[1.75]"
                     style={{ fontFamily: 'season' }}
                   >
                     “{active.quote}”
                   </blockquote>
 
                   <div className="mt-10 sm:mt-12 lg:mt-14">
-                    <div className="mx-auto h-px w-12 bg-white/20 lg:mx-0 lg:w-14" />
+                    <div className="mx-auto h-px w-12 bg-black/20 lg:mx-0 lg:w-14" />
 
-                    <p className="mt-5 text-xs font-medium text-[#E8E1D2] sm:mt-6 sm:text-sm">
+                    <p className="mt-5 text-xs font-medium text-black sm:mt-6 sm:text-sm">
                       {active.name}
                     </p>
 
-                    <p className="mt-1 text-xs text-white/55 sm:text-sm">
+                    <p className="mt-1 text-xs text-black/55 sm:text-sm">
                       {active.role}
                     </p>
                   </div>

@@ -79,7 +79,7 @@ export default function VerticalStory() {
       </article>
 
       {/* ---------------- Frame 2 ---------------- */}
-      <article className="flex flex-col bg-[#20280F] text-white">
+      <article className="flex flex-col bg-white text-black">
         <div className="flex flex-col justify-center p-5 py-20 sm:p-8 sm:py-24">
           <motion.div
             variants={fadeUp}
@@ -95,7 +95,7 @@ export default function VerticalStory() {
               A quiet revolution in Modern Menswear
             </h2>
 
-            <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-white/75">
+            <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-black/75">
               <p>
                 Founded in 2006, Osman's journey began with ready-to-wear and
                 evolved into a deeper commitment to bespoke tailoring.
