@@ -49,7 +49,7 @@ export default function Footer() {
 
 
           {/* SHOP */}
-
+{/* 
           <div>
 
             <h3 className="text-[11px] font-medium uppercase tracking-[0.08em] sm:text-sm">
@@ -76,7 +76,7 @@ export default function Footer() {
 
             </ul>
 
-          </div>
+          </div> */}
 
 
           {/* COMPANY */}
@@ -108,7 +108,7 @@ export default function Footer() {
 
           {/* SUPPORT */}
 
-          <div>
+          {/* <div>
 
             <h3 className="text-[11px] font-medium uppercase tracking-[0.08em] sm:text-sm">
               Support
@@ -130,7 +130,7 @@ export default function Footer() {
 
             </ul>
 
-          </div>
+          </div> */}
 
 
           {/* SOCIALS */}
