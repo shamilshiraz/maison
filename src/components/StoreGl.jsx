@@ -16,7 +16,7 @@ const images = [
 export default function StoreGallery() {
   return (
     <section
-      className="overflow-hidden bg-white text-black"
+      className="overflow-hidden bg-white text-black py-20"
       style={{ fontFamily: 'neue' }}
     >
 

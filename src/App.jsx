@@ -64,7 +64,7 @@ function App() {
       <HorizontalStory />
       <FeaturedCarousel />
       <ConsultationSection />
-            <ParallaxGallery/>
+            {/* <ParallaxGallery/> */}
       <ExperienceStore />
       <TestimonialSection />
       <FAQSection />

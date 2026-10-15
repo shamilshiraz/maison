@@ -136,8 +136,8 @@ export default function Navbar() {
           <div className="hidden items-center justify-center gap-6 text-[11px] uppercase text-black/80 sm:flex md:gap-10 md:text-xs">
             <FlipLink to="/about">Story</FlipLink>
             <FlipLink to="/store">The Atelier</FlipLink>
-            <FlipLink to="/trunkshows">Maison Madras</FlipLink>
-            <FlipLink to="/trunkshows">Ready to wear</FlipLink>
+            <FlipLink to="https://maison-finishing.vercel.app/">Maison Madras</FlipLink>
+            <FlipLink to="https://osmanabdulrazak.com/">Ready to wear</FlipLink>
           </div>
 
           {/* RIGHT — DESKTOP APPOINTMENT / MOBILE HAMBURGER */}
